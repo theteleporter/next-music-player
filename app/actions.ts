@@ -9,18 +9,18 @@ import { put } from '@vercel/blob';
 
 export async function createPlaylistAction(id: string, name: string) {
   // Let's only handle this on local for now
-  if (process.env.VERCEL_ENV === 'production') {
-    return;
-  }
+ // if (process.env.VERCEL_ENV === 'production') {
+  //  return;
+ // }
 
   await createPlaylist(id, name);
 }
 
 export async function uploadPlaylistCoverAction(_: any, formData: FormData) {
   // Let's only handle this on local for now
-  if (process.env.VERCEL_ENV === 'production') {
-    return;
-  }
+  //if (process.env.VERCEL_ENV === 'production') {
+  //  return;
+ // }
 
   const playlistId = formData.get('playlistId') as string;
   const file = formData.get('file') as File;
@@ -53,9 +53,9 @@ export async function updatePlaylistNameAction(
   name: string
 ) {
   // Let's only handle this on local for now
-  if (process.env.VERCEL_ENV === 'production') {
-    return;
-  }
+  //if (process.env.VERCEL_ENV === 'production') {
+  //  return;
+  //}
 
   await db.update(playlists).set({ name }).where(eq(playlists.id, playlistId));
 
@@ -64,9 +64,9 @@ export async function updatePlaylistNameAction(
 
 export async function deletePlaylistAction(id: string) {
   // Let's only handle this on local for now
-  if (process.env.VERCEL_ENV === 'production') {
-    return;
-  }
+  //if (process.env.VERCEL_ENV === 'production') {
+  //  return;
+ // }
 
   await db.transaction(async (tx) => {
     await tx
